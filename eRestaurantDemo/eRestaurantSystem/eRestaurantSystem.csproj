@@ -51,6 +51,7 @@
     <Compile Include="DAL\Entities\Reservation.cs" />
     <Compile Include="DAL\Entities\SpecialEvent.cs" />
     <Compile Include="DAL\Entities\Table.cs" />
+    <Compile Include="DAL\eRestaurantContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
