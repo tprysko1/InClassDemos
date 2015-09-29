@@ -55,6 +55,9 @@ namespace eRestaurantSystem.BLL
         {
             using (var context = new eRestaurantContext())
             {
+                int theYear =(DateTime.Parse(reservationdate)).Year;
+                int theMonth =(DateTime.Parse(reservationdate)).Month;
+                int theDay =(DateTime.Parse(reservationdate)).Day;
                 //query syntax
                 var results = from item in context.SpecialEvents
                               orderby item.Description
@@ -62,9 +65,9 @@ namespace eRestaurantSystem.BLL
                               {
                                     Description = item.Description,
                                     Reservations = from r in item.Reservations
-                                                   where r.ReservationDate.Year == (DateTime.Parse(reservationdate)).Year
-                                                     && r.ReservationDate.Month == (DateTime.Parse(reservationdate)).Month
-                                                     && r.ReservationDate.Day == (DateTime.Parse(reservationdate)).Day
+                                                   where r.ReservationDate.Year == theYear
+                                                     && r.ReservationDate.Month == theMonth
+                                                     && r.ReservationDate.Day == theDay
                                                     select new ReservationDetail() 
                                                     {
                                                         CustomerName = r.CustomerName,
