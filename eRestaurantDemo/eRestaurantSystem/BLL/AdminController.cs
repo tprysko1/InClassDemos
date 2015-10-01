@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 #region Additional Namespaces
 using eRestaurantSystem.DAL;
 using eRestaurantSystem.DAL.Entities;
+using eRestaurantSystem.DAL.DTOs;
+using eRestaurantSystem.DAL.POCOs;
 using System.ComponentModel; //Object Data Source
 using eRestaurantSystem.DAL.DTOs;
 using eRestaurantSystem.DAL.POCOs; 
@@ -26,9 +28,13 @@ namespace eRestaurantSystem.BLL
             using (var context = new eRestaurantContext())
             {
                 //method syntax
-                return context.SpecialEvents.OrderBy(x => x.Description).ToList();
+                //return context.SpecialEvents.OrderBy(x => x.Description).ToList();
 
-               
+                //query syntax
+                var results = from item in context.SpecialEvents
+                              orderby item.Description
+                              select item;
+                return results.ToList();
             }
         }
 
@@ -43,16 +49,24 @@ namespace eRestaurantSystem.BLL
                               orderby item.CustomerName, item.ReservationDate
                               select item;
                 return results.ToList();
+<<<<<<< HEAD
 
 
             }
         }
 
         [DataObjectMethod(DataObjectMethodType.Select,false)]
+=======
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+>>>>>>> origin/master
         public List<ReservationByDate> GetReservationsByDate(string reservationdate)
         {
             using (var context = new eRestaurantContext())
             {
+<<<<<<< HEAD
                 //remember Linq does not like using DateTime casting
                 int theYear = (DateTime.Parse(reservationdate)).Year;
                 int theMonth = (DateTime.Parse(reservationdate)).Month;
@@ -80,6 +94,36 @@ namespace eRestaurantSystem.BLL
                 return results.ToList(); 
             }
         }
+=======
+                int theYear =(DateTime.Parse(reservationdate)).Year;
+                int theMonth =(DateTime.Parse(reservationdate)).Month;
+                int theDay =(DateTime.Parse(reservationdate)).Day;
+                //query syntax
+                var results = from item in context.SpecialEvents
+                              orderby item.Description
+                              select new ReservationByDate()
+                              {
+                                    Description = item.Description,
+                                    Reservations = from r in item.Reservations
+                                                   where r.ReservationDate.Year == theYear
+                                                     && r.ReservationDate.Month == theMonth
+                                                     && r.ReservationDate.Day == theDay
+                                                    select new ReservationDetail() 
+                                                    {
+                                                        CustomerName = r.CustomerName,
+                                                        ReservationDate = r.ReservationDate,
+                                                        NumberInParty = r.NumberInParty,
+                                                        ContactPhone = r.ContactPhone,
+                                                        ReservationStatus = r.ReservationStatus,
+                                                    }
+                                                           
+
+                              };
+                return results.ToList();
+            }
+        }
+      
+>>>>>>> origin/master
     }
 }
 
