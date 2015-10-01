@@ -49,24 +49,21 @@ namespace eRestaurantSystem.BLL
                               orderby item.CustomerName, item.ReservationDate
                               select item;
                 return results.ToList();
-<<<<<<< HEAD
+
 
 
             }
         }
 
-        [DataObjectMethod(DataObjectMethodType.Select,false)]
-=======
-            }
-        }
+
 
         [DataObjectMethod(DataObjectMethodType.Select, false)]
->>>>>>> origin/master
+
         public List<ReservationByDate> GetReservationsByDate(string reservationdate)
         {
             using (var context = new eRestaurantContext())
             {
-<<<<<<< HEAD
+
                 //remember Linq does not like using DateTime casting
                 int theYear = (DateTime.Parse(reservationdate)).Year;
                 int theMonth = (DateTime.Parse(reservationdate)).Month;
@@ -94,36 +91,10 @@ namespace eRestaurantSystem.BLL
                 return results.ToList(); 
             }
         }
-=======
-                int theYear =(DateTime.Parse(reservationdate)).Year;
-                int theMonth =(DateTime.Parse(reservationdate)).Month;
-                int theDay =(DateTime.Parse(reservationdate)).Day;
-                //query syntax
-                var results = from item in context.SpecialEvents
-                              orderby item.Description
-                              select new ReservationByDate()
-                              {
-                                    Description = item.Description,
-                                    Reservations = from r in item.Reservations
-                                                   where r.ReservationDate.Year == theYear
-                                                     && r.ReservationDate.Month == theMonth
-                                                     && r.ReservationDate.Day == theDay
-                                                    select new ReservationDetail() 
-                                                    {
-                                                        CustomerName = r.CustomerName,
-                                                        ReservationDate = r.ReservationDate,
-                                                        NumberInParty = r.NumberInParty,
-                                                        ContactPhone = r.ContactPhone,
-                                                        ReservationStatus = r.ReservationStatus,
-                                                    }
-                                                           
 
-                              };
-                return results.ToList();
-            }
-        }
+             
       
->>>>>>> origin/master
+
     }
 }
 

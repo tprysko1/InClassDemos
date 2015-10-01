@@ -50,13 +50,13 @@
   <ItemGroup>
     <Compile Include="BLL\AdminController.cs" />
     <Compile Include="DAL\DTOs\ReservationByDate.cs" />
-<<<<<<< HEAD
+
     <Compile Include="DAL\Entities\Bill.cs" />
     <Compile Include="DAL\Entities\BillItem.cs" />
     <Compile Include="DAL\Entities\Item.cs" />
     <Compile Include="DAL\Entities\MenuCategory.cs" />
-=======
->>>>>>> origin/master
+
+
     <Compile Include="DAL\Entities\Reservation.cs" />
     <Compile Include="DAL\Entities\SpecialEvent.cs" />
     <Compile Include="DAL\Entities\Table.cs" />
