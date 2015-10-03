@@ -19,7 +19,7 @@
         <tr>
             <td colspan="2">&nbsp;</td>
         </tr>
-        <tr>
+        <tr>           
 
 
             <td colspan="2">
@@ -32,7 +32,7 @@
                                 <asp:Label ID="CustomerNameLabel" runat="server" Text='<%# Eval("CustomerName") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="ReservationDateLabel" runat="server" Text='<%# Eval("ReservationDate") %>' />
+                                <asp:Label ID="ReservationDateLabel" runat="server" Text='<%# Eval("ReservationDate", "{0:MMM dd, yyyy h:mm tt}") %>' />
                             </td>
 
                             <td align="right">
@@ -43,7 +43,7 @@
                                 <asp:Label ID="ContactPhoneLabel" runat="server" Text='<%# Eval("ContactPhone") %>' />
                             </td>
 
-                            <td>
+                            <td align="center">
                                 <asp:Label ID="ReservatonStatusLabel" runat="server" Text='<%# Eval("ReservationStatus") %>' />
                             </td>
                          
@@ -67,15 +67,15 @@
                                 <asp:Label ID="CustomerNameLabel" runat="server" Text='<%# Eval("CustomerName") %>' />
                             </td>
                             <td>
-                                <asp:Label ID="ReservationDateLabel" runat="server" Text='<%# Eval("ReservationDate") %>' />
+                                <asp:Label ID="ReservationDateLabel" runat="server" Text='<%# Eval("ReservationDate", "{0:MMM dd, yyyy h:mm tt}") %>' />
                             </td>
-                            <td>
+                            <td align="right">
                                 <asp:Label ID="NumberInPartyLabel" runat="server" Text='<%# Eval("NumberInParty") %>' />
                             </td>
                             <td>
                                 <asp:Label ID="ContactPhoneLabel" runat="server" Text='<%# Eval("ContactPhone") %>' />
                             </td>
-                            <td>
+                            <td align="center">
                                 <asp:Label ID="ReservatonStatusLabel" runat="server" Text='<%# Eval("ReservationStatus") %>' />
 
                             </td>
