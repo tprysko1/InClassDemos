@@ -18,6 +18,7 @@ namespace eRestaurantSystem.BLL
     [DataObject]
     public class AdminController
     {
+       
         [DataObjectMethod(DataObjectMethodType.Select,false)]
         public List<SpecialEvent> SpecialEvents_List()
         {
@@ -114,7 +115,6 @@ namespace eRestaurantSystem.BLL
             }
         }
       
-
     }
 }
 
