@@ -18,11 +18,9 @@ namespace eRestaurantSystem.BLL
     [DataObject]
     public class AdminController
     {
-<<<<<<< HEAD
-       
-=======
+
         #region Queries
->>>>>>> origin/master
+
         [DataObjectMethod(DataObjectMethodType.Select,false)]
         public List<SpecialEvent> SpecialEvents_List()
         {
@@ -118,11 +116,9 @@ namespace eRestaurantSystem.BLL
                 return results.ToList();
             }
         }
-<<<<<<< HEAD
+
       
-    }
-}
-=======
+
         #endregion
 
         #region Add, Update, Delete of CRUD for CQRS
@@ -171,5 +167,5 @@ namespace eRestaurantSystem.BLL
         #endregion
     }//eof class
 }//eof namespace
->>>>>>> origin/master
+
 
