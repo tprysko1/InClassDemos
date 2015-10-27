@@ -9,8 +9,8 @@
     <uc1:MessageUserControl runat="server" ID="MessageUserControl" />
     <br />
     <asp:Label ID="Label1" runat="server" Text="Waiter Names"></asp:Label>
-    <asp:DropDownList ID="WaiterList" runat="server" AppendDataBoundItems="True" DataSourceID="ODSWaiterList" DataTextField="FullName" DataValueField="WaiterID" Height="22px" Width="371px">
-        <asp:ListItem Value="0">Select a waiter</asp:ListItem>
+    <asp:DropDownList ID="WaiterList" runat="server" DataSourceID="ODSWaiterList" DataTextField="FullName" DataValueField="WaiterID" Height="22px" Width="371px">
+        
     </asp:DropDownList>
     <asp:LinkButton ID="FetchWaiter" runat="server" OnClick="FetchWaiter_Click">Fetch Waiter</asp:LinkButton>
     <asp:ObjectDataSource ID="ODSWaiterList" runat="server" OldValuesParameterFormatString="original_{0}" OnSelected="CheckForException" SelectMethod="Waiters_List" TypeName="eRestaurantSystem.BLL.AdminController"></asp:ObjectDataSource>
@@ -64,10 +64,10 @@
         </tr>
         <tr>
             <td>
-                <asp:LinkButton ID="WaiterInsert" runat="server">Insert</asp:LinkButton>
+                <asp:LinkButton ID="WaiterInsert" runat="server" OnClick="WaiterInsert_Click">Insert</asp:LinkButton>
             </td>
             <td>
-                <asp:LinkButton ID="WaiterUpdate" runat="server">Update</asp:LinkButton>
+                <asp:LinkButton ID="WaiterUpdate" runat="server" OnClick="WaiterUpdate_Click">Update</asp:LinkButton>
             </td>
         </tr>
     </table>

@@ -119,7 +119,7 @@ namespace eRestaurantSystem.BLL
         }
 
         [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public List<MenuCategoryItems> MenuCategoryItems_List()
+    public List<eRestaurantSystem.DAL.DTOs.MenuCategoryItems> MenuCategoryItems_List()
         {
             using (var context = new eRestaurantContext())
             {
@@ -141,8 +141,48 @@ namespace eRestaurantSystem.BLL
             }
         }
 
-      
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<eRestaurantSystem.DAL.POCOs.CategoryMenuItems> GetReportCategoryMenuItems()
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                var results = from cat in context.Items
+                              orderby cat.Category.Description, cat.Description
+                              select new eRestaurantSystem.DAL.POCOs.CategoryMenuItems
+                              {
+                                  CategoryDescription = cat.Category.Description,
+                                  ItemDescription = cat.Description,
+                                  Price = cat.CurrentPrice,
+                                  Calories = cat.Calories,
+                                  Comment = cat.Comment
+                              };
 
+                return results.ToList(); // this was .Dump() in Linqpad
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<WaiterBilling> GetWaiterBillingReport()
+        {
+            using (eRestaurantContext context = new eRestaurantContext())
+            {
+                var results = from abillrow in context.Bills
+                              where abillrow.BillDate.Month == 5
+                              orderby abillrow.BillDate, abillrow.Waiter.LastName, abillrow.Waiter.FirstName
+                              select new WaiterBilling
+                              {
+                                  BillDate = abillrow.BillDate.Year + "/" +
+                                             abillrow.BillDate.Month + "/" +
+                                             abillrow.BillDate.Day,
+                                  Name = abillrow.Waiter.LastName + ", " + abillrow.Waiter.FirstName,
+                                  BillID = abillrow.BillID,
+                                  BillTotal = abillrow.Items.Sum(bitem => bitem.Quantity * bitem.SalePrice),
+                                  PartySize = abillrow.NumberInParty,
+                                  Contact = abillrow.Reservation.CustomerName
+                              };
+                return results.ToList();
+            }
+        }
         #endregion
 
         #region Add, Update, Delete of CRUD for CQRS
@@ -190,7 +230,7 @@ namespace eRestaurantSystem.BLL
         }
 
          [DataObjectMethod(DataObjectMethodType.Insert, false)]
-         public void Waiter_Add(Waiter item)
+         public int Waiters_Add(Waiter item)
          {
              using (eRestaurantContext context = new eRestaurantContext())
              {
@@ -201,6 +241,9 @@ namespace eRestaurantSystem.BLL
                  added = context.Waiters.Add(item);
                  //command is not executed until it is actually saved.
                  context.SaveChanges();
+                 //added contains the data of the newly added waiter 
+                 //including the pkey value.
+                 return added.WaiterID;
              }
          }
          [DataObjectMethod(DataObjectMethodType.Update, false)]
